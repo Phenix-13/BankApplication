@@ -1,0 +1,30 @@
+services:
+
+  ms-account:
+    image: phenix13/ms-account
+    ports:
+      - 8081:8080
+    networks:
+      - bankapp-network
+    mem_limit: 700m
+
+
+  ms-cards:
+    image: phenix13/ms-cards
+    ports:
+      - 9001:9000
+    networks:
+      - bankapp-network
+    mem_limit: 700m
+
+
+  ms-loans:
+    image: phenix13/ms-loans
+    ports:
+      - 8091:8090
+    networks:
+      - bankapp-network
+    mem_limit: 700m
+
+networks:
+  bankapp-network:

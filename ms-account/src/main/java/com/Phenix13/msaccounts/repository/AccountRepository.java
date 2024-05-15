@@ -1,7 +1,6 @@
-package com.Phenix13.BankApplication.repository;
+package com.Phenix13.msaccounts.repository;
 
-import com.Phenix13.BankApplication.controller.AccountController;
-import com.Phenix13.BankApplication.model.Accounts;
+import com.Phenix13.msaccounts.model.Accounts;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package com.Phenix13.BankApplication.controller;
+package com.Phenix13.msaccounts.controller;
 
-import com.Phenix13.BankApplication.model.Accounts;
-import com.Phenix13.BankApplication.repository.AccountRepository;
+import com.Phenix13.msaccounts.model.Accounts;
+import com.Phenix13.msaccounts.repository.AccountRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

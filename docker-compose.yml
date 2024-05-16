@@ -1,30 +1,61 @@
 services:
 
   ms-account:
-    image: phenix13/ms-account
+    image: Phenix13/ms-account
     ports:
       - 8081:8080
     networks:
       - bankapp-network
     mem_limit: 700m
+    depends_on:
+      eurekaserver:
+        condition: service_completed_successfully
 
 
   ms-cards:
-    image: phenix13/ms-cards
+    image: Phenix13/ms-cards
     ports:
       - 9001:9000
     networks:
       - bankapp-network
     mem_limit: 700m
+    depends_on:
+      eurekaserver:
+        condition: service_completed_successfully
 
 
   ms-loans:
-    image: phenix13/ms-loans
+    image: Phenix13/ms-loans
     ports:
       - 8091:8090
     networks:
       - bankapp-network
     mem_limit: 700m
+    depends_on:
+      eurekaserver:
+        condition: service_completed_successfully
+
+
+  configserver:
+    image: Phenix13/configserver
+    ports:
+      - 8072:8071
+    networks:
+      - bankapp-network
+    mem_limit: 700m
+
+
+  eurekaserver:
+    image: Phenix13/eurekaserver
+    ports:
+      - 8069:8070
+    networks:
+      - bankapp-network
+    mem_limit: 700m
+    depends_on:
+      configserver:
+        condition: service_completed_successfully
+        restart: true
 
 networks:
   bankapp-network:

@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableFeignClients
 @RefreshScope
-@ComponentScans({@ComponentScan("com.Phenix13.msloans.controller")})
+//@ComponentScans({@ComponentScan("com.Phenix13.msloans.controller")})
 @EnableJpaRepositories("com.Phenix13.msloans.repository")
 @EntityScan("com.Phenix13.msloans.model")
 public class MsLoansApplication {

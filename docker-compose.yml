@@ -3,59 +3,97 @@ services:
   ms-account:
     image: Phenix13/ms-account
     ports:
-      - 8081:8080
+      - "8080:8080"
     networks:
       - bankapp-network
     mem_limit: 700m
     depends_on:
-      eurekaserver:
-        condition: service_completed_successfully
+      - eurekaserver
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 30s
+        max_attempts: 3
+        window: 120s
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka/
 
 
   ms-cards:
     image: Phenix13/ms-cards
     ports:
-      - 9001:9000
+      - "9000:9000"
     networks:
       - bankapp-network
     mem_limit: 700m
     depends_on:
-      eurekaserver:
-        condition: service_completed_successfully
+      - eurekaserver
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka/
 
 
   ms-loans:
     image: Phenix13/ms-loans
     ports:
-      - 8091:8090
+      - "8090:8090"
     networks:
       - bankapp-network
     mem_limit: 700m
     depends_on:
-      eurekaserver:
-        condition: service_completed_successfully
+      - eurekaserver
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka/
 
 
   configserver:
     image: Phenix13/configserver
     ports:
-      - 8072:8071
+      - "8071:8071"
     networks:
       - bankapp-network
     mem_limit: 700m
+
 
 
   eurekaserver:
     image: Phenix13/eurekaserver
     ports:
-      - 8069:8070
+      - "8070:8070"
     networks:
       - bankapp-network
     mem_limit: 700m
     depends_on:
-      configserver:
-        condition: service_completed_successfully
-        restart: true
+      - configserver
+
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+
 
 networks:
   bankapp-network:

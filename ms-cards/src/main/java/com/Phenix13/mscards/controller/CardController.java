@@ -3,6 +3,7 @@ package com.Phenix13.mscards.controller;
 import com.Phenix13.mscards.model.Cards;
 import com.Phenix13.mscards.model.Customer;
 import com.Phenix13.mscards.repository.CardsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableFeignClients
 @RefreshScope
-@ComponentScans({@ComponentScan("com.Phenix13.mscards.controller")})
+//@ComponentScans({@ComponentScan("com.Phenix13.mscards.controller")})
 @EnableJpaRepositories("com.Phenix13.mscards.repository")
 @EntityScan("com.Phenix13.mscards.model")
 public class MsCardsApplication {
